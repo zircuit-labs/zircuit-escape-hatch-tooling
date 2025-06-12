@@ -11,24 +11,10 @@ services:
       context: .
       dockerfile: Dockerfile.l2
     ports:
-      - "39545:8545"
-      - "39546:8546"
-      - "38060:6060"
       - "8545:8545"
     volumes:
       - "${PWD}/_data:/db"
     entrypoint:
-      # pass the L2 specific flags by overriding the entry-point and adding extra arguments
       - "/bin/sh"
       - "/entrypoint.sh"
-      - "--rollup.disabletxpoolgossip=true"
-      - "--network=testnet"
-    environment:
-      FORK_TRIGGER: ${FORK_TRIGGER}
-      GETH_MINER_RECOMMIT: 2s
-    healthcheck:
-      test: [ "CMD", "wget", "--tries=1", "--no-verbose", "--output-document=/dev/null", "http://localhost:8545" ]
-      interval: 5s
-      timeout: 5s
-      retries: 10
 
