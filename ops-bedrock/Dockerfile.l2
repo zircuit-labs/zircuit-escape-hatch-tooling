@@ -1,0 +1,7 @@
+FROM --platform=linux/amd64 l2-geth:latest
+
+COPY entrypoint-l2.sh /entrypoint.sh
+
+VOLUME ["/db"]
+
+ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]
