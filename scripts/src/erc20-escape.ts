@@ -3,6 +3,14 @@ import L2OutputOracleABI from "./L2OutputOracle.json";
 import L1StandardBridgeABI from "./L1StandardBridge.json";
 import { config, validateERC20Config } from "./config";
 
+// Helper function to strip leading zeros from hex strings
+function stripHexLeadingZeros(hex: string): string {
+    // Remove 0x prefix, strip leading zeros, add 0x back
+    const stripped = hex.replace(/^0x0+/, '0x');
+    // Handle the case where the number is just 0
+    return stripped === '0x' ? '0x0' : stripped;
+}
+
 async function escapeERC20(): Promise<void> {
     validateERC20Config(config);
 
@@ -26,12 +34,12 @@ async function escapeERC20(): Promise<void> {
     let l2OutputBlockNumber = latestOutput.l2BlockNumber;
 
     // Obtain the arguments required to verify the state root of the L2 against the output root that was published in the L2OutputOracle
-    const l2Block = await l2Provider.send('eth_getBlockByNumber', [l2OutputBlockNumber.toHexString(), false]);
+    const l2Block = await l2Provider.send('eth_getBlockByNumber', [stripHexLeadingZeros(l2OutputBlockNumber.toHexString()), false]);
 
     let messagePasserStorageRoot = (await l2Provider.send('eth_getProof', [
         config.l2ToL1MessagePasserAddress,
         [],
-        l2OutputBlockNumber.toHexString()
+        stripHexLeadingZeros(l2OutputBlockNumber.toHexString())
     ])).storageHash;
 
     let outputRoot = ethers.utils.keccak256(ethers.utils.defaultAbiCoder.encode([ "uint", "uint","uint","uint"],["0x0",l2Block.stateRoot,messagePasserStorageRoot,l2Block.hash]));
@@ -46,7 +54,7 @@ async function escapeERC20(): Promise<void> {
     let ERC20AccountProof = await l2Provider.send('eth_getProof', [
         config.l2ERC20ForEscape!,
         [UserERC20BalanceStorageSlot],
-        l2OutputBlockNumber.toHexString()
+        stripHexLeadingZeros(l2OutputBlockNumber.toHexString())
     ]);
 
     let escapeTx = await L1StandardBridgeContract.populateTransaction.escapeERC20(
