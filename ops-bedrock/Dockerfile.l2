@@ -1,0 +1,7 @@
+FROM --platform=linux/amd64 zircuit1/l2-geth:v1.26.5
+
+COPY entrypoint-l2.sh /entrypoint.sh
+
+VOLUME ["/db"]
+
+ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]

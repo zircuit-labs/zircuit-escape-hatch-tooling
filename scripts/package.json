@@ -1,0 +1,22 @@
+{
+  "name": "escape-hatch-tooling",
+  "version": "1.0.0",
+  "description": "Tooling for Zircuit escape hatch functionality",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "eth": "ts-node src/index.ts",
+    "erc20": "ts-node src/erc20-escape.ts"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "ethers": "^5"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.1",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
