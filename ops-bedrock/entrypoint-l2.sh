@@ -10,4 +10,6 @@ exec geth \
 	--nodiscover \
 	--maxpeers=0 \
 	--gcmode=archive \
+	--networkid=48899 \
+	--offline \
 	"$@"

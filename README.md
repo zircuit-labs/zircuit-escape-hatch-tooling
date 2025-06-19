@@ -2,36 +2,45 @@
 
 ## Setup
 
-1. **Download chaindata** from your source
-
-2. **Copy chaindata to correct path:**
+1. **Download testnet chaindata snapshot:**
    ```bash
-   cp -r _data/* ~/zircuit-escape-hatch-tooling/ops-bedrock/_data
+   wget https://chaindata-testnet.s3.us-east-2.amazonaws.com/public/replica1-snapshot-2025-06-19.tar.gz
+   ```
+   *(Note: This file is ~500GB compressed and requires ~1TB of disk space when extracted)*
+
+2. **Extract chaindata:**
+   ```bash
+   nohup tar -xzf replica1-snapshot-2025-06-19.tar.gz &
    ```
 
-3. **Start local node:**
+3. **Move chaindata to correct path:**
+   ```bash
+   mv chaindata/ ops-bedrock/_data/
+   ```
+
+4. **Start local node:**
    ```bash
    docker compose up -d
    ```
 
-4. **Verify replica is working:**
+5. **Verify replica is working:**
    ```bash
    cast block-number --rpc-url http://localhost:8545
    ```
    *(requires [Foundry](https://getfoundry.sh/))*
 
-5. **Install dependencies:**
+6. **Install dependencies:**
    ```bash
    cd scripts
    yarn install
    ```
 
-6. **Configure addresses in `env.example`:**
+7. **Configure addresses in `env.example`:**
    - Contract addresses
    - Network settings  
    - Your escape address
 
-7. **Build project:**
+8. **Build project:**
    ```bash
    yarn build
    ```
