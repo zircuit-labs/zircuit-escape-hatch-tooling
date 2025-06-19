@@ -1,6 +1,8 @@
 # Zircuit Escape Hatch Tooling
 
-## Setup
+*Note: this currently applies only to the Zircuit Legacy testnet which was deprecated in June 2025.*
+
+## Setup - Legacy Testnet (Deprecated June 2025)
 
 1. **Download testnet chaindata snapshot:**
    ```bash
@@ -47,6 +49,8 @@
 
 ## Usage
 
+Escape hatch functionality for the Legacy Testnet is active 5 days after the last state root was posted on Sepolia.
+
 - **ETH escape:** `yarn eth`
 - **ERC20 escape:** `yarn erc20` *(configure ERC20 addresses in env.example first)*
 
@@ -64,3 +68,4 @@ Replace:
 - `[to_address]` with the target contract address
 - `"tx_data"` with the output from `yarn eth` or `yarn erc20`
 - `YOUR_PRIVATE_KEY` with your escaping account's private key
+
