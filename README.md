@@ -51,3 +51,16 @@
 - **ERC20 escape:** `yarn erc20` *(configure ERC20 addresses in env.example first)*
 
 Both commands output transaction data for the escape hatch.
+
+## Execute Transaction
+
+Once you have the transaction data from the above commands, execute it on Sepolia:
+
+```bash
+cast send [to_address] "tx_data" --rpc-url [sepolia_rpc] --private-key YOUR_PRIVATE_KEY
+```
+
+Replace:
+- `[to_address]` with the target contract address
+- `"tx_data"` with the output from `yarn eth` or `yarn erc20`
+- `YOUR_PRIVATE_KEY` with your escaping account's private key
