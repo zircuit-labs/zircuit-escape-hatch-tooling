@@ -1,6 +1,7 @@
 {
-  "name": "escape-hatch-tooling",
+  "name": "@zircuit-labs/escape-hatch-tooling",
   "version": "1.0.0",
+  "private": true,
   "description": "Tooling for Zircuit escape hatch functionality",
   "main": "dist/index.js",
   "scripts": {
