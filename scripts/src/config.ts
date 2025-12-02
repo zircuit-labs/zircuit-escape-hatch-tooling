@@ -18,6 +18,7 @@ export interface EscapeHatchConfig {
     l1StandardBridgeAddress?: string;
     l1ERC20ForEscape?: string;
     l2ERC20ForEscape?: string;
+    erc20Upgradable?: boolean;
 }
 
 export const config: EscapeHatchConfig = {
@@ -30,7 +31,8 @@ export const config: EscapeHatchConfig = {
     l2ToL1MessagePasserAddress: "0x4200000000000000000000000000000000000016",
     l1StandardBridgeAddress: process.env.L1_STANDARD_BRIDGE_ADDRESS || "<L1StandardBridge ADDRESS>",
     l1ERC20ForEscape: process.env.L1_ERC20_ADDRESS || "<ADDRESS OF ERC20 ON L1>",
-    l2ERC20ForEscape: process.env.L2_ERC20_ADDRESS || "<ADDRESS OF ERC20 ON L2>"
+    l2ERC20ForEscape: process.env.L2_ERC20_ADDRESS || "<ADDRESS OF ERC20 ON L2>",
+    erc20Upgradable: process.env.ERC20_UPGRADABLE || "<ERC20 UPGRADABLE>"
 };
 
 // Validation function to ensure all required config is provided for ETH escaping

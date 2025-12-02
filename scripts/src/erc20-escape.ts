@@ -60,6 +60,7 @@ async function escapeERC20(): Promise<void> {
     let escapeTx = await L1StandardBridgeContract.populateTransaction.escapeERC20(
         config.l1ERC20ForEscape!,
         config.l2ERC20ForEscape!,
+        config.erc20Upgradable!,
         {
             version: ethers.constants.HashZero,
             stateRoot: l2Block.stateRoot,
