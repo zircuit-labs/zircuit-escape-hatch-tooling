@@ -18,7 +18,7 @@ export interface EscapeHatchConfig {
     l1StandardBridgeAddress?: string;
     l1ERC20ForEscape?: string;
     l2ERC20ForEscape?: string;
-    erc20Upgradable?: boolean;
+    erc20Upgradable?: string;
 }
 
 export const config: EscapeHatchConfig = {
@@ -32,7 +32,7 @@ export const config: EscapeHatchConfig = {
     l1StandardBridgeAddress: process.env.L1_STANDARD_BRIDGE_ADDRESS || "<L1StandardBridge ADDRESS>",
     l1ERC20ForEscape: process.env.L1_ERC20_ADDRESS || "<ADDRESS OF ERC20 ON L1>",
     l2ERC20ForEscape: process.env.L2_ERC20_ADDRESS || "<ADDRESS OF ERC20 ON L2>",
-    erc20Upgradable: process.env.ERC20_UPGRADABLE || "<ERC20 UPGRADABLE>"
+    erc20Upgradable: process.env.ERC20_UPGRADABLE || "<ERC20 UPGRADABLE>",
 };
 
 // Validation function to ensure all required config is provided for ETH escaping
@@ -62,7 +62,8 @@ export function validateERC20Config(cfg: EscapeHatchConfig): void {
         'l2OutputOracleAddress',
         'l1StandardBridgeAddress',
         'l1ERC20ForEscape',
-        'l2ERC20ForEscape'
+        'l2ERC20ForEscape',
+        'erc20Upgradable'
     ];
 
     for (const field of requiredFields) {

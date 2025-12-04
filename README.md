@@ -4,52 +4,16 @@
 
 ## Setup - Legacy Testnet (Deprecated June 2025)
 
-1. **Download testnet chaindata snapshot:**
-   ```bash
-   wget https://chaindata-testnet.s3.us-east-2.amazonaws.com/public/replica1-snapshot-2025-06-19.tar.gz
-   ```
-   *(Note: This file is ~500GB compressed and requires ~1TB of disk space when extracted)*
+Follow the intructions in ´zircuit-legacy-testnet´ folder.
 
-2. **Extract chaindata:**
-   ```bash
-   nohup tar -xzf replica1-snapshot-2025-06-19.tar.gz &
-   ```
+## Setup - Zircuit Mainnet and Garfield Testnet
 
-3. **Move chaindata to correct path:**
-   ```bash
-   mv chaindata/ ops-bedrock/_data/
-   ```
-
-4. **Start local node:**
-   ```bash
-   docker compose up -d
-   ```
-
-5. **Verify replica is working:**
-   ```bash
-   cast block-number --rpc-url http://localhost:8545
-   ```
-   *(requires [Foundry](https://getfoundry.sh/))*
-
-6. **Install dependencies:**
-   ```bash
-   cd scripts
-   yarn install
-   ```
-
-7. **Configure addresses in `env.example`:**
-   - Contract addresses
-   - Network settings  
-   - Your escape address
-
-8. **Build project:**
-   ```bash
-   yarn build
-   ```
+Change the network in ´zircuit/ops-bedrock/docker-compose.yml`, use ´testnet´ for Zircuit Garfield, and ´mainnet´ for Zircuit Mainnet.
+Follow the instructions in ´zircuit´folder.
 
 ## Usage
 
-Escape hatch functionality for the Legacy Testnet is active 5 days after the last state root was posted on Sepolia.
+Escape hatch functionality for the Legacy Testnet is active 5 days after the last state root was posted on Sepolia, and 30 days for Zircuit Garfield and Zircuit Mainnet.
 
 - **ETH escape:** `yarn eth`
 - **ERC20 escape:** `yarn erc20` *(configure ERC20 addresses in env.example first)*
